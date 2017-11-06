@@ -10,12 +10,27 @@ def getartistgenre():
 
     with open(filename) as json_data:
         datafile = json.load(json_data)
-
+        genres = []
+        i=1
         for data in datafile:
             for artist in datafile[data]:
-                response = requests.get(url % artistlisteners.getartistlisteners(artist))
-                print(response.status_code)
+                response = requests.get(url % artistlisteners.formatanome(artist))
+                plain_text = response.text
+                soup = BeautifulSoup(plain_text, "html.parser")
 
+                for li in soup.findAll('li', {'class':'tag'}):
+                    genre = li.find_next('a').get('href')
+                    genres.append(genre)
 
-getartistgenre()
+            print(str(i) + "/" + str(len(datafile)))
+            i += 1
+
+            usuarios[data] = genres
+            genres = []
+
+        json_data.close()
+
+    file = open(filename, 'w')
+    json.dump(usuarios, file)
+    file.close()
 

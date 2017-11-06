@@ -39,5 +39,7 @@ def getartists(usuario):
                 artistname = a.contents[0]
                 artistas.append(artistname)
 
+
+
     return artistas
 
