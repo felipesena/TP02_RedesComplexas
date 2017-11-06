@@ -35,5 +35,3 @@ def formatanome(artista):
     return formatado
 
 
-getartistlisteners("John Mayer")
-

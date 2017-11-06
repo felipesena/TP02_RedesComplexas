@@ -29,12 +29,15 @@ def getartists(usuario):
 
     if(response.status_code == 200):
         print(url)
-        for a in soup.findAll('ol')[0].findAll('a', {'class':'link-block-target'}):
-            artistname = a.contents[0]
-            artistas.append(artistname)
+
+        if(len(soup.findAll('ol')) == 0):
+            for span in soup.findAll('table')[1].findAll('span', {'class':'chartlist-ellipsis-wrap'}):
+                artistname = span.find_next('a').attrs['title']
+                artistas.append(artistname)
+        else:
+            for a in soup.findAll('ol')[0].findAll('a', {'class':'link-block-target'}):
+                artistname = a.contents[0]
+                artistas.append(artistname)
 
     return artistas
-
-
-getuserartists()
 
