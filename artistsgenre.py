@@ -20,7 +20,8 @@ def getartistgenre():
 
                 for li in soup.findAll('li', {'class':'tag'}):
                     genre = li.find_next('a').get('href')
-                    genres.append(genre)
+                    if genre not in genres:
+                        genres.append(genre)
 
             print(str(i) + "/" + str(len(datafile)))
             i += 1
