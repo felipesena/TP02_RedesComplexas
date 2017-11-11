@@ -1,10 +1,10 @@
-import artistlisteners, userartists, artistsgenre
+import artistlisteners, userartists, graph
 
 
 def main():
     artistlisteners.getartistlisteners("John Mayer")
     userartists.getuserartists()
-    artistsgenre.getartistgenre()
+    graph.generategraph()
 
 
 main()

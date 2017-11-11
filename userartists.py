@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def getuserartists():
-    filename = "listeners.json"
+    filename = "files/listeners.json"
     usuarios = {}
 
     with open(filename) as json_data:
@@ -31,9 +31,12 @@ def getartists(usuario):
         print(url)
 
         if(len(soup.findAll('ol')) == 0):
-            for span in soup.findAll('table')[1].findAll('span', {'class':'chartlist-ellipsis-wrap'}):
-                artistname = span.find_next('a').attrs['title']
-                artistas.append(artistname)
+            if len(soup.findAll('p', {'class':'no-data-message'})) > 2:
+                return artistas
+            else:
+                for span in soup.findAll('table')[1].findAll('span', {'class':'chartlist-ellipsis-wrap'}):
+                    artistname = span.find_next('a').attrs['title']
+                    artistas.append(artistname)
         else:
             for a in soup.findAll('ol')[0].findAll('a', {'class':'link-block-target'}):
                 artistname = a.contents[0]

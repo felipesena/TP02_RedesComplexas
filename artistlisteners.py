@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 
 
 def getartistlisteners(artista):
-    namefile = "listeners.json"
+    namefile = "files/listeners.json"
     url = "https://www.last.fm/music/%s/+listeners?page=" % (formatanome(artista)) + "%d"
 
     usuarios = []
 
-    for i in range(1, 2):
+    for i in range(1, 9):
         response = requests.get(url % (i))
         plain_text = response.text
         soup = BeautifulSoup(plain_text, 'html.parser')
