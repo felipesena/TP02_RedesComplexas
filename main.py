@@ -1,5 +1,5 @@
 import artistlisteners, userartists, graph
-import sys
+
 
 
 def main():
