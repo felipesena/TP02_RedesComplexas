@@ -37,3 +37,5 @@ def getresults(graph):
     print("Betweenness das arestas: " + str(nx.edge_betweenness(graph)))
     print("Betweenness dos nodos: " + str(nx.betweenness_centrality(graph)))
 
+
+
